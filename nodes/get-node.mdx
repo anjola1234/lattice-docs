@@ -5,6 +5,10 @@ description: "Retrieve details for a single node by its public key"
 
 Returns full details for a single node, including its list of directly connected neighbors.
 
+<Tip>
+  Don't have a `public_key` yet? Get one from [Search Nodes](/nodes/search) or [Top Nodes](/nodes/top) — both return a `public_key` for every node in their results, which you can then pass into this endpoint.
+</Tip>
+
 ## Request
 GET /api/nodes/{public_key}
 
