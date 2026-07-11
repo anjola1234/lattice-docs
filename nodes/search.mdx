@@ -1,0 +1,69 @@
+---
+title: "Search Nodes"
+description: "Search for nodes by alias"
+---
+
+Searches for nodes whose alias matches the given query string.
+
+## Request
+GET /api/nodes/search
+
+### Query Parameters
+
+<ParamField query="q" type="string" required>
+  The search term to match against node aliases. Case-insensitive, partial matches supported.
+</ParamField>
+
+## Example Request
+
+```bash
+curl "https://lattice-blue.vercel.app/api/nodes/search?q=bitcoin"
+```
+
+## Example Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "results": [
+      {
+        "public_key": "02003400340034003400340034003400340034003400340034003400340034abcd",
+        "alias": "Peach Bitcoin",
+        "capacity": 108848421,
+        "channels": 14,
+        "centrality": 0.0281,
+        "role": "Leaf Node"
+      },
+      {
+        "public_key": "02028002800280028002800280028002800280028002800280028002800280abcd",
+        "alias": "Bitcoin Node BN1",
+        "capacity": 290201412,
+        "channels": 1,
+        "centrality": 0.002,
+        "role": "Leaf Node"
+      }
+    ],
+    "total": 6,
+    "query": "bitcoin"
+  },
+  "meta": {
+    "timestamp": "2026-07-10T10:08:59.503Z",
+    "version": "1.0"
+  }
+}
+```
+
+<Note>
+  This example response has been shortened to 2 results for readability. The actual query `?q=bitcoin` returns all 6 matching nodes, as reflected in the `total` field.
+</Note>
+
+## Response Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `results` | array | List of matching nodes |
+| `total` | number | Total number of matches found |
+| `query` | string | The search term that was used |
+
+Each object in `results` follows the same node structure described in [Get Node](/nodes/get-node).

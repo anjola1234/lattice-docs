@@ -1,0 +1,63 @@
+---
+title: "All Nodes"
+description: "Retrieve the full list of nodes in the graph"
+---
+
+Returns every node in the graph.
+
+## Request
+GET /api/graph/nodes
+
+No parameters required.
+
+## Example Request
+
+```bash
+curl https://lattice-blue.vercel.app/api/graph/nodes
+```
+
+## Example Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "nodes": [
+      {
+        "public_key": "02000000000000000000000000000000000000000000000000000000000000abcd",
+        "alias": "ACINQ",
+        "capacity": 124540831,
+        "channels": 30,
+        "centrality": 0.0601,
+        "role": "Relay Node"
+      },
+      {
+        "public_key": "02000100010001000100010001000100010001000100010001000100010001abcd",
+        "alias": "Bitrefill",
+        "capacity": 31855092,
+        "channels": 43,
+        "centrality": 0.0862,
+        "role": "Connector"
+      }
+    ],
+    "total": 500
+  },
+  "meta": {
+    "timestamp": "2026-07-10T10:45:05.022Z",
+    "version": "1.0"
+  }
+}
+```
+
+<Note>
+  This example response has been shortened to 2 nodes for readability. The actual response includes all 500 nodes, as reflected in the `total` field.
+</Note>
+
+## Response Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `nodes` | array | Full list of nodes in the graph |
+| `total` | number | Total number of nodes returned |
+
+Each object in `nodes` follows the same node structure described in [Get Node](/nodes/get-node).

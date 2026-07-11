@@ -1,0 +1,62 @@
+---
+title: "Quickstart"
+description: "Make your first request to the Lattice API"
+---
+
+This guide walks through making your first request to the Lattice API.
+
+## Get network statistics
+
+The simplest way to confirm the API is working is to fetch overall graph statistics.
+
+```bash
+curl https://lattice-blue.vercel.app/api/graph/stats
+```
+
+This returns a summary of the entire Lightning Network graph snapshot:
+
+```json
+{
+  "success": true,
+  "data": {
+    "total_nodes": 500,
+    "total_edges": 1310,
+    "total_capacity_sats": 46694845057,
+    "total_capacity_btc": 466.94845057,
+    "average_degree": 5.24,
+    "most_connected_node": {
+      "alias": "OpenNode",
+      "public_key": "02000200020002000200020002000200020002000200020002000200020002abcd",
+      "channels": 53,
+      "centrality": 0.1062
+    },
+    "node_roles": {
+      "Relay Node": 6,
+      "Connector": 17,
+      "Leaf Node": 477
+    }
+  },
+  "meta": {
+    "timestamp": "2026-07-10T10:08:51.417Z",
+    "version": "1.0"
+  }
+}
+```
+
+## Look up a specific node
+
+You can fetch details for a single node using its public key:
+
+```bash
+curl https://lattice-blue.vercel.app/api/nodes/02000200020002000200020002000200020002000200020002000200020002abcd
+```
+
+This returns the node's alias, capacity, channel count, centrality score, and a list of its directly connected neighbors.
+
+## Next steps
+
+Explore the full endpoint reference organized by resource:
+
+- **Nodes** — look up, search, and rank nodes
+- **Channels** — look up individual channels or list all channels for a node
+- **Graph** — full graph data and aggregate statistics

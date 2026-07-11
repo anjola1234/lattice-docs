@@ -1,0 +1,61 @@
+---
+title: "Get Node"
+description: "Retrieve details for a single node by its public key"
+---
+
+Returns full details for a single node, including its list of directly connected neighbors.
+
+## Request
+GET /api/nodes/{public_key}
+
+### Path Parameters
+
+<ParamField path="public_key" type="string" required>
+  The node's public key.
+</ParamField>
+
+## Example Request
+
+```bash
+curl https://lattice-blue.vercel.app/api/nodes/02000200020002000200020002000200020002000200020002000200020002abcd
+```
+
+## Example Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "public_key": "02000200020002000200020002000200020002000200020002000200020002abcd",
+    "alias": "OpenNode",
+    "capacity": 300310485,
+    "channels": 53,
+    "centrality": 0.1062,
+    "role": "Connector",
+    "neighbors": [
+      "02000000000000000000000000000000000000000000000000000000000000abcd",
+      "02000300030003000300030003000300030003000300030003000300030003abcd"
+    ]
+  },
+  "meta": {
+    "timestamp": "2026-07-10T12:02:23.546Z",
+    "version": "1.0"
+  }
+}
+```
+
+<Note>
+  The `neighbors` array contains the public keys of all nodes directly connected to this node via a channel. In this example it's been truncated for brevity — the actual response includes all 53 neighbors matching the node's channel count.
+</Note>
+
+## Response Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `public_key` | string | The node's public key |
+| `alias` | string | Human-readable node name |
+| `capacity` | number | Total channel capacity in satoshis |
+| `channels` | number | Number of open channels |
+| `centrality` | number | Centrality score within the network |
+| `role` | string | One of `Connector`, `Relay Node`, or `Leaf Node` |
+| `neighbors` | array of strings | Public keys of directly connected nodes |

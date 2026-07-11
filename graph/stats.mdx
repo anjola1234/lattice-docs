@@ -1,0 +1,59 @@
+---
+title: "Graph Statistics"
+description: "Retrieve aggregate statistics for the entire network graph"
+---
+
+Returns aggregate statistics summarizing the entire Lightning Network graph snapshot.
+
+## Request
+GET /api/graph/stats
+
+No parameters required.
+
+## Example Request
+
+```bash
+curl https://lattice-blue.vercel.app/api/graph/stats
+```
+
+## Example Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "total_nodes": 500,
+    "total_edges": 1310,
+    "total_capacity_sats": 46694845057,
+    "total_capacity_btc": 466.94845057,
+    "average_degree": 5.24,
+    "most_connected_node": {
+      "alias": "OpenNode",
+      "public_key": "02000200020002000200020002000200020002000200020002000200020002abcd",
+      "channels": 53,
+      "centrality": 0.1062
+    },
+    "node_roles": {
+      "Relay Node": 6,
+      "Connector": 17,
+      "Leaf Node": 477
+    }
+  },
+  "meta": {
+    "timestamp": "2026-07-10T10:08:51.417Z",
+    "version": "1.0"
+  }
+}
+```
+
+## Response Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `total_nodes` | number | Total number of nodes in the graph |
+| `total_edges` | number | Total number of channels (edges) in the graph |
+| `total_capacity_sats` | number | Total channel capacity across the graph, in satoshis |
+| `total_capacity_btc` | number | Total channel capacity across the graph, in BTC |
+| `average_degree` | number | Average number of channels per node |
+| `most_connected_node` | object | The node with the highest channel count |
+| `node_roles` | object | Count of nodes by role (`Relay Node`, `Connector`, `Leaf Node`) |

@@ -1,0 +1,48 @@
+---
+title: "Get Channel"
+description: "Retrieve details for a single channel by its ID"
+---
+
+Returns details for a single channel.
+
+## Request
+GET /api/channels/{channel_id}
+
+### Path Parameters
+
+<ParamField path="channel_id" type="string" required>
+  The unique identifier of the channel.
+</ParamField>
+
+## Example Request
+
+```bash
+curl https://lattice-blue.vercel.app/api/channels/ch0002
+```
+
+## Example Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "channel_id": "ch0002",
+    "node1_pub": "02000000000000000000000000000000000000000000000000000000000000abcd",
+    "node2_pub": "02000200020002000200020002000200020002000200020002000200020002abcd",
+    "capacity": 126699567
+  },
+  "meta": {
+    "timestamp": "2026-07-10T12:02:51.124Z",
+    "version": "1.0"
+  }
+}
+```
+
+## Response Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `channel_id` | string | Unique identifier for the channel |
+| `node1_pub` | string | Public key of the first node in the channel |
+| `node2_pub` | string | Public key of the second node in the channel |
+| `capacity` | number | Channel capacity in satoshis |

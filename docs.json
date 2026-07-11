@@ -1,0 +1,48 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Lattice API",
+  "colors": {
+    "primary": "#8B5CF6",
+    "light": "#A78BFA",
+    "dark": "#7C3AED"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": ["introduction", "quickstart"]
+          },
+          {
+            "group": "Nodes",
+            "pages": ["nodes/get-node", "nodes/search", "nodes/top"]
+          },
+          {
+            "group": "Channels",
+            "pages": ["channels/list", "channels/get-channel"]
+          },
+          {
+            "group": "Graph",
+            "pages": ["graph/stats", "graph/nodes", "graph/edges"]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "openapi": "openapi.json"
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Live App",
+        "href": "https://lattice-blue.vercel.app"
+      }
+    ]
+  }
+}

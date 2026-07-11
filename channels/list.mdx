@@ -1,0 +1,70 @@
+---
+title: "List Channels"
+description: "Retrieve all channels connected to a given node"
+---
+
+Returns all channels connected to a specific node.
+
+## Request
+GET /api/channels
+
+### Query Parameters
+
+<ParamField query="node" type="string" required>
+  The public key of the node whose channels you want to retrieve.
+</ParamField>
+
+## Example Request
+
+```bash
+curl "https://lattice-blue.vercel.app/api/channels?node=02000200020002000200020002000200020002000200020002000200020002abcd"
+```
+
+## Example Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "channels": [
+      {
+        "channel_id": "ch0002",
+        "node1_pub": "02000000000000000000000000000000000000000000000000000000000000abcd",
+        "node2_pub": "02000200020002000200020002000200020002000200020002000200020002abcd",
+        "capacity": 126699567
+      },
+      {
+        "channel_id": "ch0028",
+        "node1_pub": "02000200020002000200020002000200020002000200020002000200020002abcd",
+        "node2_pub": "02000300030003000300030003000300030003000300030003000300030003abcd",
+        "capacity": 194799199
+      }
+    ],
+    "total": 53
+  },
+  "meta": {
+    "timestamp": "2026-07-10T10:08:43.835Z",
+    "version": "1.0"
+  }
+}
+```
+
+<Note>
+  This example response has been shortened to 2 channels for readability. The actual query for this node returns all 53 channels, as reflected in the `total` field.
+</Note>
+
+## Response Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `channels` | array | List of channels connected to the given node |
+| `total` | number | Total number of channels returned |
+
+### Channel object
+
+| Field | Type | Description |
+|---|---|---|
+| `channel_id` | string | Unique identifier for the channel |
+| `node1_pub` | string | Public key of the first node in the channel |
+| `node2_pub` | string | Public key of the second node in the channel |
+| `capacity` | number | Channel capacity in satoshis |

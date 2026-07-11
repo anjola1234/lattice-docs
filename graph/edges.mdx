@@ -1,0 +1,59 @@
+---
+title: "All Edges"
+description: "Retrieve the full list of channels (edges) in the graph"
+---
+
+Returns every channel in the graph.
+
+## Request
+GET /api/graph/edges
+
+No parameters required.
+
+## Example Request
+
+```bash
+curl https://lattice-blue.vercel.app/api/graph/edges
+```
+
+## Example Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "edges": [
+      {
+        "channel_id": "ch0001",
+        "node1_pub": "02000000000000000000000000000000000000000000000000000000000000abcd",
+        "node2_pub": "02000100010001000100010001000100010001000100010001000100010001abcd",
+        "capacity": 123711690
+      },
+      {
+        "channel_id": "ch0002",
+        "node1_pub": "02000000000000000000000000000000000000000000000000000000000000abcd",
+        "node2_pub": "02000200020002000200020002000200020002000200020002000200020002abcd",
+        "capacity": 126699567
+      }
+    ],
+    "total": 1310
+  },
+  "meta": {
+    "timestamp": "2026-07-10T10:44:58.003Z",
+    "version": "1.0"
+  }
+}
+```
+
+<Note>
+  This example response has been shortened to 2 edges for readability. The actual response includes all 1,310 edges, as reflected in the `total` field.
+</Note>
+
+## Response Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `edges` | array | Full list of channels in the graph |
+| `total` | number | Total number of channels returned |
+
+Each object in `edges` follows the same channel structure described in [Get Channel](/channels/get-channel).

@@ -1,0 +1,38 @@
+---
+title: "Introduction"
+description: "Overview of the Lattice API"
+---
+
+Lattice is a REST API that exposes Lightning Network graph data for programmatic access. It provides information about nodes, channels, and overall network statistics from a snapshot of the Lightning Network topology.
+
+## Base URL
+
+All API requests are made to:
+https://lattice-blue.vercel.app/api
+
+## Response Format
+
+Every successful response follows the same envelope structure:
+
+```json
+{
+  "success": true,
+  "data": { ... },
+  "meta": {
+    "timestamp": "2026-07-10T10:08:43.835Z",
+    "version": "1.0"
+  }
+}
+```
+
+- **`success`** — boolean indicating whether the request succeeded
+- **`data`** — the actual response payload, structure varies by endpoint
+- **`meta`** — metadata about the response, including the timestamp it was generated and the API version
+
+## Available Resources
+
+The API is organized around three resources:
+
+- **Nodes** — individual Lightning Network nodes, including search and ranking
+- **Channels** — payment channels between nodes
+- **Graph** — aggregate statistics and full graph data (all nodes, all edges)
